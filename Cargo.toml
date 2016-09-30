@@ -1,0 +1,6 @@
+[package]
+name = "rusty-gba"
+version = "0.1.0"
+authors = ["iKevinY"]
+
+[dependencies]
