@@ -1,5 +1,5 @@
 [package]
-name = "rusty-gba"
+name = "corogue"
 version = "0.1.0"
 authors = ["iKevinY"]
 
