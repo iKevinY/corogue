@@ -1,6 +1,12 @@
 [package]
 name = "corogue"
-version = "0.1.0"
-authors = ["iKevinY"]
+version = "0.0.1"
+authors = ["Kevin Yap <me@kevinyap.ca>"]
+description = "An experimental GBA game written in Rust."
+homepage = "https://github.com/iKevinY/corogue"
+repository = "https://github.com/iKevinY/corogue"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
+gba = {path = "vendor/gba"}

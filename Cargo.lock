@@ -1,4 +1,21 @@
 [root]
 name = "corogue"
-version = "0.1.0"
+version = "0.0.1"
+dependencies = [
+ "gba 0.1.1",
+]
 
+[[package]]
+name = "gba"
+version = "0.1.1"
+dependencies = [
+ "gcc 0.3.38 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "gcc"
+version = "0.3.38"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[metadata]
+"checksum gcc 0.3.38 (registry+https://github.com/rust-lang/crates.io-index)" = "553f11439bdefe755bf366b264820f1da70f3aaf3924e594b886beb9c831bcf5"
