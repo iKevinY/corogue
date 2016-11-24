@@ -1,4 +1,7 @@
 language: generic
+branches:
+  only:
+    - master
 before_install:
   - curl "https://sh.rustup.rs" -sSf | sh -s -- --default-toolchain=nightly -y;
   - wget "http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitARMupdate.pl"
