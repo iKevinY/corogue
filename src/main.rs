@@ -5,40 +5,40 @@
 extern crate gba;
 
 mod lang;
+mod rand;
 
 pub use lang::{__aeabi_unwind_cpp_pr0, __aeabi_unwind_cpp_pr1};
 
-use gba::gfx;
-use gba::gfx::Color;
-use gba::input;
+use gba::gfx::vid_vsync;
+use gba::gfx::{Color, Mode3};
+
+use rand::Rng;
 
 
 #[no_mangle]
 pub extern "C" fn main(_: i32, _: *const *const i8) -> i32 {
-    let width = gfx::Mode3::WIDTH as i32;
-    let height = gfx::Mode3::HEIGHT as i32;
+    let mut m = Mode3::new();
+    let width = Mode3::WIDTH as i32;
+    let height = Mode3::HEIGHT as i32;
 
-    let mut m = gfx::Mode3::new();
-    let mut keys = input::Input::new();
-
-    let mut x = width / 2;
-    let mut y = height / 2;
+    let mut rng = Rng::new(42);
 
     loop {
         // Only draw once per frame
-        gfx::vid_vsync();
+        vid_vsync();
 
-        // Save current state of keypresses
-        keys.poll();
+        // Generate a random coordinate
+        let x = rng.randint(0, width as u32) as i32;
+        let y = rng.randint(0, height as u32) as i32;
 
-        x += keys.tri_horz();
-        y += keys.tri_vert();
+        // Generate a random colour
+        let color = Color::rgb15(
+            rng.randint(0, 31),
+            rng.randint(0, 31),
+            rng.randint(0, 31),
+        );
 
-        // Keep cursor within screen (wrap around edges)
-        x = (x + width) % width;
-        y = (y + height) % height;
-
-        // Draw a dot
-        m.dot(x, y, Color::rgb15(31, 31, 31));
+        // Draw dot to screen
+        m.dot(x, y, color);
     }
 }
