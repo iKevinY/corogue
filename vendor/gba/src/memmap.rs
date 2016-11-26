@@ -1,19 +1,19 @@
 use gfx::Color;
 use types::*;
 
-pub const MEM_IO : u32 = 0x04000000;
-pub const MEM_PAL : u32 = 0x05000000;		// no 8bit write !!
-pub const MEM_VRAM : u32 = 0x06000000;		// no 8bit write !!
+pub const MEM_IO: u32 = 0x04000000;
+pub const MEM_PAL: u32 = 0x05000000;		// no 8bit write !!
+pub const MEM_VRAM: u32 = 0x06000000;		// no 8bit write !!
 
-pub const PAL_SIZE : u32 = 0x00400;
-pub const VRAM_SIZE : u32 = 0x18000;
+pub const PAL_SIZE: u32 = 0x00400;
+pub const VRAM_SIZE: u32 = 0x18000;
 
-pub const VRAM_PAGE_SIZE : u32 = 0x0A000;
+pub const VRAM_PAGE_SIZE: u32 = 0x0A000;
 
 // Nice names for the most important banks...
 // Copied from TONC directly, maybe I'll revisit later.
 #[allow(non_upper_case_globals)]
-pub const pal_bg_mem: *mut Color =  MEM_PAL as *mut Color;
+pub const pal_bg_mem: *mut Color = MEM_PAL as *mut Color;
 #[allow(non_upper_case_globals)]
 pub const vid_mem: *mut Color = MEM_VRAM as *mut Color;
 #[allow(non_upper_case_globals)]
@@ -39,11 +39,11 @@ pub const REG_BG1CNT: *mut u16 = (REG_BASE + 0x000A) as *mut u16;
 pub const REG_BG2CNT: *mut u16 = (REG_BASE + 0x000C) as *mut u16;
 pub const REG_BG3CNT: *mut u16 = (REG_BASE + 0x000E) as *mut u16;
 
-pub const REG_BG0HOFS: *mut u16 = (REG_BASE+0x0010) as *mut u16;  // bg 0-3 origins
-pub const REG_BG0VOFS: *mut u16 = (REG_BASE+0x0012) as *mut u16;
-pub const REG_BG1HOFS: *mut u16 = (REG_BASE+0x0014) as *mut u16;
-pub const REG_BG1VOFS: *mut u16 = (REG_BASE+0x0016) as *mut u16;
-pub const REG_BG2HOFS: *mut u16 = (REG_BASE+0x0018) as *mut u16;
-pub const REG_BG2VOFS: *mut u16 = (REG_BASE+0x001A) as *mut u16;
-pub const REG_BG3HOFS: *mut u16 = (REG_BASE+0x001C) as *mut u16;
-pub const REG_BG3VOFS: *mut u16 = (REG_BASE+0x001E) as *mut u16;
+pub const REG_BG0HOFS: *mut u16 = (REG_BASE + 0x0010) as *mut u16;  // bg 0-3 origins
+pub const REG_BG0VOFS: *mut u16 = (REG_BASE + 0x0012) as *mut u16;
+pub const REG_BG1HOFS: *mut u16 = (REG_BASE + 0x0014) as *mut u16;
+pub const REG_BG1VOFS: *mut u16 = (REG_BASE + 0x0016) as *mut u16;
+pub const REG_BG2HOFS: *mut u16 = (REG_BASE + 0x0018) as *mut u16;
+pub const REG_BG2VOFS: *mut u16 = (REG_BASE + 0x001A) as *mut u16;
+pub const REG_BG3HOFS: *mut u16 = (REG_BASE + 0x001C) as *mut u16;
+pub const REG_BG3VOFS: *mut u16 = (REG_BASE + 0x001E) as *mut u16;

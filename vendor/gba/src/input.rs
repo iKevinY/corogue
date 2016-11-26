@@ -1,20 +1,20 @@
 use ::memmap;
-use core::intrinsics::{volatile_load};
+use core::intrinsics::volatile_load;
 
 /// Keys also functions as the flags for the keys.
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
 pub enum Keys {
-    A =      0x0001,
-    B =      0x0002,
+    A = 0x0001,
+    B = 0x0002,
     Select = 0x0004,
-    Start  = 0x0008,
-    Right  = 0x0010,
-    Left   = 0x0020,
-    Up     = 0x0040,
-    Down   = 0x0080,
-    R      = 0x0100,
-    L      = 0x0200,
+    Start = 0x0008,
+    Right = 0x0010,
+    Left = 0x0020,
+    Up = 0x0040,
+    Down = 0x0080,
+    R = 0x0100,
+    L = 0x0200,
 }
 
 /// The OR of all the keys.
@@ -43,22 +43,20 @@ pub struct Input {
     prev: u32,
     curr: u32,
 }
-fn bit_tribool(bits: u32, negative : KeyIndex, positive : KeyIndex) -> i32{
-    ((bits >> positive as u32) & 1) as i32
-        - ((bits >> negative as u32) & 1) as i32
+fn bit_tribool(bits: u32, negative: KeyIndex, positive: KeyIndex) -> i32 {
+    ((bits >> positive as u32) & 1) as i32 - ((bits >> negative as u32) & 1) as i32
 }
 
 impl Input {
     /// You should only need one copy of this struct.
     pub fn new() -> Input {
-        Input{ prev: 0, curr: 0}
+        Input { prev: 0, curr: 0 }
     }
 
     /// This should be called once a frame.
     pub fn poll(&mut self) {
         self.prev = self.curr;
-        self.curr = unsafe {!(volatile_load(memmap::REG_KEYINPUT) as u32)}
-                    & KEY_MASK;
+        self.curr = unsafe { !(volatile_load(memmap::REG_KEYINPUT) as u32) } & KEY_MASK;
     }
 
     /// hit checks if the key is now pressed, but wasn't before.
@@ -75,11 +73,11 @@ impl Input {
     }
 
     /// is_down tests if the key is currently down.
-    pub fn is_down(&mut self, k : Keys) -> bool {
+    pub fn is_down(&mut self, k: Keys) -> bool {
         self.curr & (k as u32) != 0
     }
     /// is_up tests if the key is currently up.
-    pub fn is_up(&mut self, k : Keys) -> bool {
+    pub fn is_up(&mut self, k: Keys) -> bool {
         self.curr & (k as u32) == 0
     }
 
@@ -116,4 +114,3 @@ impl Input {
         bit_tribool(self.curr & !self.prev, KeyIndex::A, KeyIndex::B)
     }
 }
-
