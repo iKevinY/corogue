@@ -3,13 +3,13 @@ branches:
   only:
     - master
 before_install:
-  - curl "https://sh.rustup.rs" -sSf | sh -s -- --default-toolchain=nightly -y;
-  - wget "http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitARMupdate.pl"
-  - export DEVKITPRO=/home/travis/devkitPro
-  - export DEVKITARM=${DEVKITPRO}/devkitARM
-  - export PATH="/home/travis/.cargo/bin:${DEVKITARM}/bin:$PATH"
+  - export DEVKITPRO="$HOME/devkitPro"
+  - export DEVKITARM="$DEVKITPRO/devkitARM"
+  - export PATH="$HOME/.cargo/bin:${DEVKITARM}/bin:$PATH"
 install:
+  - wget "http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitARMupdate.pl"
   - perl devkitARMupdate.pl
+  - curl "https://sh.rustup.rs" -sSf | sh -s -- --default-toolchain=nightly -y;
   - rustup component add rust-src
   - cargo install --force xargo
 script:
