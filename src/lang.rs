@@ -1,5 +1,7 @@
+#![allow(private_no_mangle_fns)]
 use core;
 
+#[no_mangle]
 #[lang = "panic_fmt"]
 extern "C" fn panic_fmt(_args: &core::fmt::Arguments, _file: &str, _line: u32) -> ! {
     loop {}
